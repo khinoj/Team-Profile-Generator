@@ -41,6 +41,9 @@ const employeeQuestion = () => {
         name: 'email',
         message: 'What is your email?',
       },
+
+      // HINT: each employee type (manager, engineer, or intern) has slightly different
+      // information; write your code to ask different questions via inquirer depending on employee type.
       {
         type: 'list',
         name: 'Role',
@@ -50,30 +53,45 @@ const employeeQuestion = () => {
           'Manager',
         ],
         message: 'What is your role?',
-
       },
       {
         type: 'input',
         name: 'github',
         message: 'What is your GitHub username?',
-        when: (answer) => answer.poistion === "Engineer",
+        when: (answers) => answers.poistion === "Engineer",
       },
-    ])
+      {
+        type: 'input',
+        name: 'school',
+        message: "What school does the Intern Attend?",
+        when: (answers) => answers.position === 'Intern',
+      },
+      {
+        type: 'number',
+        name: 'managerOffice',
+        message: 'Office number of Manager',
+        when: (answers) => answers.position === 'Manager',
+      },
+      {
+        //  Add another employee if YES
+        type: 'confirm',
+        message: 'Would you like to add another employee?',
+        name: 'addEmployee',
+      },
 
-    // HINT: each employee type (manager, engineer, or intern) has slightly different
-    // information; write your code to ask different questions via inquirer depending on employee type.
+    ])
 
     .then((answers) => {
       // Use user feedback for... whatever!! 
       let newEmployee;
       if (answers.role === 'Engineer') {
-        newEmployee = new Engineer(answer.name, answer.id, answer.email, answer.github)
+        newEmployee = new Engineer(answers.name, answers.id, answers.email, answers.github)
       };
-      if (answer.role === 'Manager') {
-        newEmployee = new Engineer(answer.name, answer.id, answer.email, answer.officeNumber)
+      if (answers.role === 'Manager') {
+        newEmployee = new Engineer(answers.name, answers.id, answers.email, answers.officeNumber)
       };
-      if (answer.role === 'Intern') {
-        newEmployee = new Intern(answer.name, answer.id, answer.email, answer.school)
+      if (answers.role === 'Intern') {
+        newEmployee = new Intern(answers.name, answers.id, answers.email, answers.school)
       };
       employees.push(newEmployee);
     })
@@ -81,7 +99,7 @@ const employeeQuestion = () => {
 };
 
 const init = () => {
-  console.log('Please Answer the Following Questions');
+  console.log('Answer All Following Questions');
   employeeQuestion();
 };
 
@@ -89,7 +107,6 @@ init();
 
 
 // After the user has input all employees desired, call the `render` function (required above) and pass in an array containing all employee objects; the `render` function will generate and return a block of HTML including templated divs for each employee!
-
 
 
 // HINT: make sure to build out your classes first! Remember that your Manager, Engineer, and Intern classes should all extend from a class named Employee; see the directions for further information. Be sure to test out each class and verify it generates an object with the correct structure and methods. This structure will be crucial in order for the provided `render` function to work!
