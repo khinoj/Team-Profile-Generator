@@ -38,7 +38,7 @@ const employeeQuestion = () => {
       // information; write your code to ask different questions via inquirer depending on employee type.
       {
         type: 'list',
-        name: 'Role',
+        name: 'role',
         choices: [
           'Engineer',
           'Intern',
@@ -50,19 +50,19 @@ const employeeQuestion = () => {
         type: 'input',
         name: 'github',
         message: 'What is your GitHub username?',
-        when: (answers) => answers.poistion === "Engineer",
+        when: (answers) => answers.role === "Engineer",
       },
       {
         type: 'input',
         name: 'school',
         message: "What school does the Intern Attend?",
-        when: (answers) => answers.position === 'Intern',
+        when: (answers) => answers.role === 'Intern',
       },
       {
         type: 'number',
         name: 'officeNumber',
         message: 'Office number of Manager',
-        when: (answers) => answers.position === 'Manager',
+        when: (answers) => answers.role === 'Manager',
       },
       {
         //  Add another employee if YES
