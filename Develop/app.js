@@ -86,7 +86,6 @@ const employeeQuestion = () => {
         newEmployee = new Intern(answers.name, answers.id, answers.email, answers.school)
       };
     })
-
 };
 
 const init = () => {
