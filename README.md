@@ -43,6 +43,6 @@
 
 ## GitHub
 
-1. 
+1.  https://github.com/khinoj/Team-Profile-Generator
 
-2.  
+2.  https://khinoj.github.io/Team-Profile-Generator/
