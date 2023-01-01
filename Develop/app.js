@@ -30,6 +30,18 @@ const employeeQuestion = () => {
 
   inquirer
     .prompt([
+      // HINT: each employee type (manager, engineer, or intern) has slightly different
+      // information; write your code to ask different questions via inquirer depending on employee type.
+      {
+        type: 'list',
+        name: 'role',
+        choices: [
+          'Engineer',
+          'Intern',
+          'Manager',
+        ],
+        message: 'What is your role?',
+      },
       {
         type: 'input',
         name: 'name',
@@ -44,19 +56,6 @@ const employeeQuestion = () => {
         type: 'input',
         name: 'email',
         message: 'What is your email?',
-      },
-
-      // HINT: each employee type (manager, engineer, or intern) has slightly different
-      // information; write your code to ask different questions via inquirer depending on employee type.
-      {
-        type: 'list',
-        name: 'role',
-        choices: [
-          'Engineer',
-          'Intern',
-          'Manager',
-        ],
-        message: 'What is your role?',
       },
       {
         type: 'input',
@@ -97,6 +96,11 @@ const employeeQuestion = () => {
       if (answers.role === 'Intern') {
         newEmployee = new Intern(answers.name, answers.id, answers.email, answers.school)
       };
+
+      // adds to array  via push I think
+      // employees.push(employeeQuestion);
+
+
       if (answers.addEmployee) {
         return employeeQuestion();
       } else {
