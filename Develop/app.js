@@ -105,23 +105,24 @@ const employeeQuestion = () => {
     });
 };
 
-// const init = () => {
-//   console.log('Answer All Following Questions');
-//   employeeQuestion();
-// };
+const init = () => {
+  console.log('Answer All Following Questions');
+  employeeQuestion();
+};
 
-// init();
+init();
 
 // After you have your html, you're now ready to create an HTML file using the HTML returned from the `render` function. Now write it to a file named `team.html` in the `output` folder. You can use the variable `outputPath` above target this location.
 
 // from readme help?
+
 // .then((answers) => {
-//   const readME = generateMarkdown(answers);
-//   if (readME === '') {
-//       console.log('README.md Issue, please try again.');
+//   const team = generateMarkdown(answers);
+//   if (team === '') {
+//       console.log('team.html Issue, please try again.');
 //   } else {
-//       fs.writeFile('README.md', readME, (err) =>
-//           err ? console.log(err) : console.log('Success! File created README.md')
+//       fs.writeFile('team.html', team, (err) =>
+//           err ? console.log(err) : console.log('Success! File created team.html')
 //       );
 //   };
 // });
