@@ -12,6 +12,18 @@ const render = require("./lib/htmlRenderer");
 
 const employees = [];
 
+const checkDir = () => {
+  if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR);
+  };
+};
+// makes a file 
+const createHtml = () => {
+  const teamFile = render(employees);
+  checkDir();
+  fs.writeFileSync(outputPath, teamFile);
+};
+
 
 // Write code to use inquirer to gather information about the development team members, and to create objects for each team member (using the correct classes as blueprints!)
 const employeeQuestion = () => {
@@ -85,23 +97,34 @@ const employeeQuestion = () => {
       if (answers.role === 'Intern') {
         newEmployee = new Intern(answers.name, answers.id, answers.email, answers.school)
       };
-    })
+      if (answers.addEmployee) {
+        return employeeQuestion();
+      } else {
+        return createHtml();
+      };
+    });
 };
 
-const init = () => {
-  console.log('Answer All Following Questions');
-  employeeQuestion();
-};
+// const init = () => {
+//   console.log('Answer All Following Questions');
+//   employeeQuestion();
+// };
 
-init();
+// init();
 
 // After you have your html, you're now ready to create an HTML file using the HTML returned from the `render` function. Now write it to a file named `team.html` in the `output` folder. You can use the variable `outputPath` above target this location.
-const createHtml = () => {
-  const teamFile = render(employees);
-  checkDir();
-  fs.writeFile(outputPath, teamFile);
-};
 
+// from readme help?
+// .then((answers) => {
+//   const readME = generateMarkdown(answers);
+//   if (readME === '') {
+//       console.log('README.md Issue, please try again.');
+//   } else {
+//       fs.writeFile('README.md', readME, (err) =>
+//           err ? console.log(err) : console.log('Success! File created README.md')
+//       );
+//   };
+// });
 
 // After the user has input all employees desired, call the `render` function (required above) and pass in an array containing all employee objects; the `render` function will generate and return a block of HTML including templated divs for each employee!
 
